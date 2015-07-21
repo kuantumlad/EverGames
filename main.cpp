@@ -1,6 +1,8 @@
 #include "Player.hh"
 #include "Gun.hh"
 #include "Menu.hh"
+#include "Starmap.hh"
+
 #include <SFML/Graphics.hpp>
 
 
@@ -8,9 +10,12 @@ int main()
 {
     // create the window
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+    window.setFramerateLimit(60);
 
     Player speeder1;
-    Gun bullet;
+    Gun laser;
+    Starmap Stars;
+    Stars.init_star();
     // Menu Buttons;
 
     speeder1.player_texture();
@@ -28,19 +33,21 @@ int main()
         }
 
 	speeder1.player_movement();
-	bullet.generatelaser();
-	bullet.updater();
-	bullet.move();
+	laser.generatelaser(&speeder1);
+	laser.laser_move();
+	
 
         // clear the window with black color
         window.clear(sf::Color::Black);
 
         // draw everything here...
-	
+	window.draw(Stars);
 	window.draw(speeder1);
+	window.draw(laser);
 	//window.draw(Buttons);
 	// end the current frame
         window.display();
+	Stars.update();
     }
     return 0;
 }

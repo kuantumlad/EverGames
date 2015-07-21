@@ -8,12 +8,12 @@ sf::Texture ptexture;
 
 
 Player::Player() {
-  m_moveX  = 0.01;
-  m_moveY  = 0.01;
+  m_moveX  = 10;
+  m_moveY  = 10;
   m_positionlaser = 0.0;
   m_velocitylaser = 0.1;
-  speederPosX = 0.0;
-  speederPosY = 0.0;
+  // speederPosX = 0.0;
+  // speederPosY = 0.0;
  
 }
 Player::~Player() {;}
@@ -60,10 +60,10 @@ void Player::player_movement(){
     }
 }
 
-void Player::player_position(){
+sf::Vector2f Player::player_position(){  //removed player_ from class function,add sf
   sf::Vector2f speederPos = speeder.getPosition();
-  speederPosX = speederPos.x;
-  speederPosY = speederPos.y;
+  //  speederPosX = speederPos.x;
+  // speederPosY = speederPos.y;
   return speederPos;
 }
 

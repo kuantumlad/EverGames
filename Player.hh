@@ -17,13 +17,13 @@ private:
 public:
   Player();
   ~Player();
-
  
 
   void player_texture();
   void player_startpos();
   void player_movement();
-  void player_position();
+  sf::Vector2f player_position();
+  sf::Vector2f position() {return speeder.getPosition(); }
   void draw(sf::RenderTarget&, sf::RenderStates) const;
   
   sf::Sprite speeder;
