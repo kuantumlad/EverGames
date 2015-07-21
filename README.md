@@ -12,7 +12,8 @@ Contents:
 
 (iv) Git Setup
 
-(1) Make sure git is installed. You can check this by typing git --version. #
+(1) Make sure git is installed. You can check this by typing git --version. 
+# 
 (2) git config --global user.email "email@address"
 (3) git config --global user.name "username"
 (4) Change into the desired directory, then type git init. This initializes a git repository in your project.
