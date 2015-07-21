@@ -1,0 +1,14 @@
+#ifndef MENU_HH
+#define MENU_HH
+
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+
+class Menu : public sf::Drawable {
+
+public:
+
+Menu();
+~Menu();
+
+void display();

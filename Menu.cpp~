@@ -1,0 +1,6 @@
+#include "Menu.hh"
+#include <SFML/Window.hpp>
+#include <<SFML/Graphics.hpp>
+
+Menu::Menu()  {;}
+Menu::~Menu() {;}
