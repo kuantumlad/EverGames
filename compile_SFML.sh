@@ -6,7 +6,7 @@ g++ -c main.cpp Gun.cpp Player.cpp Starmap.cpp -I/Documents/SFML/SFML_SRC/includ
 
 echo "Linking..."
 echo " "
-g++ main.o Gun.o Player.o Starmap.o -o sfml-app -L/Documents/SFML/SFML_SRC/lib -lsfml-graphics -lsfml-window -lsfml-system
+g++ main.o Gun.o Player.o Starmap.o -o sfml-app -L/Documents/SFML/SFML_SRC/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 echo "Executing..."
 echo " " 

@@ -3,6 +3,7 @@
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Player.hh"
 class Player;
 
@@ -11,6 +12,8 @@ private:
   sf::RectangleShape laser;
   double laserY, counte, laser_counter;
   double laser_velocity;
+  sf::SoundBuffer buffer;
+  sf::Sound noise1;
   sf::Vector2f lasermove;
   sf::Clock clock;
   sf::Time time1;
@@ -22,6 +25,7 @@ public:
   void updater();
   void laser_move();  
   void generatelaser(Player *ptr);
+  void laser_sound();
   void draw(sf::RenderTarget&, sf::RenderStates) const;
 
   sf::Vector2f laserPos();

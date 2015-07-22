@@ -24,10 +24,12 @@ void Gun::generatelaser(Player *ptr){
   sf::Vector2f speederPos = ptr->position();
   if( sf::Keyboard::isKeyPressed(sf::Keyboard::Space) )
     {
+     
       time1 = clock.getElapsedTime();
       // timer = time1.asSeconds();
       if(timer>=0.1)
 	{
+	  noise1.play();
 	  sf::Vector2f offset(75.0,60.0);
 	  sf::Vector2f laserPos(0.0,0.0);
 
@@ -47,19 +49,6 @@ void Gun::generatelaser(Player *ptr){
 }
       
 
-
-
-// void Gun::updater(){
-
-//   lasermove = laser.getPosition();
-//   laserY = lasermove.y;
-
-//   laser.setPosition(lasermove.x, laserY);
-//   laser.move(laser_velocity, 0); 
-  
-
-// }
-
 void Gun::laser_move(){
 
   for( std::vector<sf::RectangleShape>::iterator it = store_laser.begin(); it != store_laser.end(); ++it )
@@ -70,10 +59,24 @@ void Gun::laser_move(){
       (*it).setPosition(lasermove.x, laserY);
       (*it).move(laser_velocity, 0); 
    
+     
     }
 
 }
   
+void Gun::laser_sound(){
+ 
+  if(!buffer.loadFromFile("LAZER.WAV") )
+    {
+      std::cout<<"File not found."<<std::endl;
+    }
+  noise1.setBuffer(buffer);
+  noise1.setPitch(0.5);
+  
+  //noise1.play();
+}
+
+
 //Draw Bullet
 void Gun::draw( sf::RenderTarget& target, sf::RenderStates states ) const {
   for( std::vector<sf::RectangleShape>::const_iterator it = store_laser.begin(); it != store_laser.end(); ++it )

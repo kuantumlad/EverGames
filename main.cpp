@@ -33,6 +33,7 @@ int main()
         }
 
 	speeder1.player_movement();
+	laser.laser_sound();
 	laser.generatelaser(&speeder1);
 	laser.laser_move();
 	
