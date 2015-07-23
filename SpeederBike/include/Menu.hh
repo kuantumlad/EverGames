@@ -9,19 +9,24 @@ class Menu : public sf::Drawable {
 private: 
   int m_length, m_height;
   int m_startposX, m_startposY;
+  int i,j,k;
+  double offset; 
+  std::vector<std::string> menuoptions;
+  std::vector<sf::Text> menuitems;
+  std::vector<double> menuposX;
 
 public:
 
-  sf::RectangleShape Start;
+  sf::RectangleShape button;
   sf::Font font;
-  sf::Text Startt;
+  sf::Text start, options, exit, title;
 
   Menu();
   ~Menu();
 
   void load_font();
   void set_text();
-  void start();
+  void menumove();
   void draw(sf::RenderTarget&, sf::RenderStates) const;
 
 };

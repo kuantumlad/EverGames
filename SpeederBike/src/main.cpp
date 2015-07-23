@@ -27,10 +27,13 @@ int main()
     stars.init_star();
     Menu menu;
 
+    menu.load_font();
    
     speeder1.player_texture();
     laser.laser_sound();
     speeder1.player_startpos();
+    //menu.set_text();
+
     // run the program as long as the window is open
     while (window.isOpen())
     {
@@ -43,18 +46,21 @@ int main()
 	    window.close();
         }
 
+
+	menu.menumove();
+
 	speeder1.player_movement();
 
 	laser.generatelaser(&speeder1);
 	laser.laser_move();
 	
-window.draw(menu);
         // clear the window with black color
         window.clear(sf::Color::Black);
 
         // draw everything here...
 	//	window.draw(stars);
-	
+	window.draw(menu);
+
 	//window.draw(speeder1);
 	//	window.draw(laser);
       	// end the current frame
