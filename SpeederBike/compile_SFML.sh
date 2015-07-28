@@ -3,14 +3,14 @@
 echo "Compiling..."
 echo " "
 cd src/
-g++ -c main.cpp Gun.cpp Player.cpp Starmap.cpp Menu.cpp -I/Documents/SFML/SFML_SRC/include
+g++ -c main.cpp Gun.cpp Player.cpp Starmap.cpp Menu.cpp Map.cpp -I/Documents/SFML/SFML_SRC/include
 mv *.o ../linker/
 
 
 cd ../linker/
 echo "Linking..."
 echo " "
-g++ main.o Gun.o Player.o Starmap.o Menu.o -o sfml-app -L/Documents/SFML/SFML_SRC/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+g++ main.o Gun.o Player.o Starmap.o Menu.o Map.o -o sfml-app -L/Documents/SFML/SFML_SRC/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 mv sfml-app ../
 echo "Executing..."

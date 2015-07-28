@@ -1,0 +1,7 @@
+#ifndef MAP_HH
+#define MAP_HH
+
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+
+class Map : public sf::Drawable, public sf::Transformable{

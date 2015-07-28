@@ -12,8 +12,8 @@ private:
   int m_length, m_height;
   int m_startposX, m_startposY;
   double offset; 
-  sf::SoundBuffer buffer;//, buffer1;
-  sf::Sound MenuMusic;
+  sf::SoundBuffer buffer;
+  sf::Music MenuMusic;
   sf::Sound ItemNoise;
 
   std::vector<std::string> menutitle;
@@ -26,7 +26,6 @@ public:
   sf::Font font;
   sf::Text MenuOptions [3];
   sf::Text start, options, exit, title;
-  bool key, Start, Options, Exit;
   int SelectedItemIndex;
 
 
@@ -37,7 +36,9 @@ public:
   void set_text();
   void MoveRight();
   void MoveLeft();
-  void MenuSound();
+  void PlayMenuMusic();
+  void StopMenuMusic();
+  void SelectionSound();
   void load_menu_sounds();
   int GetPressedItem(){ return SelectedItemIndex;} 
   void draw(sf::RenderTarget&, sf::RenderStates) const;

@@ -11,102 +11,127 @@
 #include "../include/Gun.hh"
 #include "../include/Menu.hh"
 #include "../include/Starmap.hh"
+#include "../include/Map.hh"
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
 int main()
 {
-    // create the window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Game");
-    window.setFramerateLimit(60);
 
-    Player speeder1;
-    Gun laser;
-    Starmap stars;
-    stars.init_star();
-    Menu menu;
+  const float FPS = 60.0f;
+  bool redraw = true;
+  float time;
 
-    menu.load_font();
-   
-    speeder1.player_texture();
-    laser.laser_sound();
-    menu.load_menu_sounds();
-    speeder1.player_startpos();
-    //menu.set_text();
-    menu.MenuSound();
+  // create the window
+  sf::RenderWindow window(sf::VideoMode(880, 575), "Game");
+  sf::Clock clock;
+  window.setFramerateLimit(60);
 
-    // run the program as long as the window is open
-    while (window.isOpen())
+  Player speeder1;
+  Gun laser;
+  Starmap stars;
+  stars.init_star();
+  Menu menu;
+  Map forest( window.getSize().x, window.getSize().y );
+
+  menu.load_font();
+  speeder1.player_texture();
+  laser.laser_sound();
+  menu.load_menu_sounds();
+  speeder1.player_startpos();
+  menu.PlayMenuMusic();
+  bool firsttry = true;
+
+  // run the program as long as the window is open
+  while (window.isOpen())
     {
-        // check all the window's events that were triggered since the last iteration of the loop
+      // check all the window's events that were triggered since the last iteration of the loop
+
+     
       sf::Event event;
+     
+      if( clock.getElapsedTime().asSeconds() >= 1.0f/FPS)
+	{
+	  redraw = true;
+	  
+	}
+
       while (window.pollEvent(event))
         {
-            // "close requested" event: we close the window
-	  // if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-	  // window.close();
-
-	  switch(event.type)
+	  // "close requested" event: we close the window
+	  if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	    window.close();
+	 
+	  if(firsttry)
 	    {
-	    case sf::Event::KeyReleased:
-	      switch ( event.key.code)
+	      switch(event.type)
 		{
-		case sf::Keyboard::Left:
-		  menu.MoveLeft();
-		  break;
-
-		case sf::Keyboard::Right:
-		  menu.MoveRight();
-		  break;
-
-		case sf::Keyboard::Return:
-		  switch( menu.GetPressedItem() )
+		case sf::Event::KeyReleased:
+		  switch ( event.key.code)
 		    {
-		    case 0:
-		      std::cout<<"Start button has been pressed"<<std::endl;
+		    case sf::Keyboard::Left:
+		      menu.MoveLeft();
 		      break;
-		    case 1:
-		      std::cout<<"Options button has been pressed"<<std::endl;
+
+		    case sf::Keyboard::Right:
+		      menu.MoveRight();
 		      break;
-		    case 2:
-		      std::cout<<"Exit button has been pressed"<<std::endl;
-		      window.close();
-		      break;
+
+		    case sf::Keyboard::Return:
+		 
+		      switch( menu.GetPressedItem() )
+			{
+			case 0:
+			  std::cout<<"Start button has been pressed"<<std::endl;
+			  firsttry = false;
+			  menu.StopMenuMusic();
+			  menu.SelectionSound();
+			  clock.restart();
+			  break;
+			case 1:
+			  std::cout<<"Options button has been pressed"<<std::endl;
+			  break;
+			case 2:
+			  std::cout<<"Exit button has been pressed"<<std::endl;
+			  window.close();
+			  break;
+			}
 		    }
 		}
-	      
 	      break;
-	    case sf::Event::Closed:
-	      window.close();
-	      
-	      break;
-
 	    }
+	}
+   
+      if( redraw )
+	{
+	  if (firsttry)
+	    {
+	      window.clear(sf::Color::Black);
+	      window.draw(menu);
+	      window.display();
+	    }
+	 
+	  else if(!firsttry)
+	    {
+	      time = clock.getElapsedTime().asSeconds();
+	      forest.update(time);
+	      speeder1.player_movement();
+	      laser.generatelaser(&speeder1);
+	      laser.laser_move();
 	
+	      // clear the window with black color
+	      window.clear(sf::Color::Black);
 
-	
-
-
-      
-	speeder1.player_movement();
-
-	laser.generatelaser(&speeder1);
-	laser.laser_move();
-	
-        // clear the window with black color
-        window.clear(sf::Color::Black);
-
-        // draw everything here...
-	//	window.draw(stars);
-	window.draw(menu);
-
-	//window.draw(speeder1);
-	//	window.draw(laser);
-      	// end the current frame
-        window.display();
-	//	stars.update();
+	      // draw everything here...
+	      window.draw(forest);
+	      window.draw(speeder1);
+	      window.draw(laser);
+	      // end the current frame
+	      window.display();
+	    }
 	}
     }
-    return 0;
+
+  return 0;
 }

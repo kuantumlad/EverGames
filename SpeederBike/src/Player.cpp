@@ -11,10 +11,10 @@ Player::Player() {
   m_moveY  = 10;
   m_positionlaser = 0.0;
   m_velocitylaser = 0.1;
-  lowerbound.x = 0.0;
-  lowerbound.y = 0.0;
-  upperbound.x = 700.0;
-  upperbound.y = 520.0;
+  lowerbound.x = 75.0;
+  lowerbound.y = 200.0;
+  upperbound.x = 350.0;
+  upperbound.y = 420.0;
  
 }
 Player::~Player() {;}
@@ -35,7 +35,7 @@ void Player::draw( sf::RenderTarget& target, sf::RenderStates states ) const {
 
 //Starting position of player
 void Player::player_startpos(){
-  speeder.setPosition(350,520);
+  speeder.setPosition(200,370);
 }
 
 //Movement

@@ -12,20 +12,20 @@ Menu::Menu() {
   m_startposY = 400.0;
   SelectedItemIndex=0;
 
- menutitle.push_back("START");
- menutitle.push_back("OPTIONS");
- menutitle.push_back("EXIT");
+  menutitle.push_back("START");
+  menutitle.push_back("OPTIONS");
+  menutitle.push_back("EXIT");
 
-  menuposX.push_back(250);
-  menuposX.push_back(350);
-  menuposX.push_back(495);
+  menuposX.push_back(230);
+  menuposX.push_back(330);
+  menuposX.push_back(485);
   
   // Menu Text
   title.setFont(font);
   title.setCharacterSize(40);
   title.setColor(sf::Color::Yellow);
   title.setString("ENDOR CHALLENGE");
-  title.setPosition(200,200);
+  title.setPosition(195,195);
 
   MenuOptions[0].setFont(font);
   MenuOptions[0].setCharacterSize(20);
@@ -50,30 +50,39 @@ Menu::Menu() {
 Menu::~Menu() {;}
 
 void Menu::load_menu_sounds(){
- // if(!buffer.loadFromFile("sound/R2D2e.wav") )
- //    {
- //      std::cout<<"File not found."<<std::endl;
- //    }
- //  ItemNoise.setBuffer(buffer);
-
- if(!buffer.loadFromFile("sound/SWopening.wav") )
+ if(!buffer.loadFromFile("sound/R2D2e.wav") )
     {
       std::cout<<"File not found."<<std::endl;
     }
-  MenuMusic.setBuffer(buffer);
+  ItemNoise.setBuffer(buffer);
+
+ if(!MenuMusic.openFromFile("sound/SWopening.wav") )
+    {
+      std::cout<<"File not found."<<std::endl;
+    }
+
+
 }
 
-void Menu::MenuSound(){
-  // MenuMusic.setVolume(50);
+void Menu::PlayMenuMusic(){
   MenuMusic.play();
+  MenuMusic.setLoop(true);
 }
 
+
+void Menu::StopMenuMusic(){
+  MenuMusic.stop();
+}
+
+void Menu::SelectionSound(){
+  ItemNoise.play();
+}
 
 void Menu::load_font(){
 
   if( !font.loadFromFile("fonts/STARWARS.TTF") );
   {
-     std::cerr<<"Font file not found."<<std::endl;
+    std::cerr<<"Font file not found."<<std::endl;
   }
 }
 
@@ -82,7 +91,6 @@ void Menu::MoveLeft(){
     MenuOptions[SelectedItemIndex].setColor(sf::Color::Yellow);
     SelectedItemIndex--;
     MenuOptions[SelectedItemIndex].setColor(sf::Color::Red);
-    // ItemNoise.play();
   }
 }
 
@@ -91,16 +99,20 @@ void Menu::MoveRight(){
     MenuOptions[SelectedItemIndex].setColor(sf::Color::Yellow);
     SelectedItemIndex++;
     MenuOptions[SelectedItemIndex].setColor(sf::Color::Red);
-    //ItemNoise.play();
   }
 }
+
+void MenuOptions(){
+
+}
+  
+  
 
 
   void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(title);
     for( int i = 0; i<3; i++){
       target.draw(MenuOptions[i]);
-      // target.draw(MenuOptions[1]);
-      //target.draw(MenuOptions[2]);
     }
   }
+
