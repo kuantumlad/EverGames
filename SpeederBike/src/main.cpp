@@ -12,6 +12,7 @@
 #include "../include/Menu.hh"
 #include "../include/Starmap.hh"
 #include "../include/Map.hh"
+#include "../include/Obstacles.hh"
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -30,6 +31,7 @@ int main()
 
   Player speeder1;
   Gun laser;
+  Obstacles StormTrooper;
   Starmap stars;
   stars.init_star();
   Menu menu;
@@ -37,7 +39,9 @@ int main()
 
   menu.load_font();
   speeder1.player_texture();
+  speeder1.player_moveSound();
   laser.laser_sound();
+  StormTrooper.ObstTexture();
   menu.load_menu_sounds();
   speeder1.player_startpos();
   menu.PlayMenuMusic();
@@ -54,7 +58,6 @@ int main()
       if( clock.getElapsedTime().asSeconds() >= 1.0f/FPS)
 	{
 	  redraw = true;
-	  
 	}
 
       while (window.pollEvent(event))
@@ -116,6 +119,8 @@ int main()
 	    {
 	      time = clock.getElapsedTime().asSeconds();
 	      forest.update(time);
+	      StormTrooper.ObstPosition();
+	      speeder1.Jump();
 	      speeder1.player_movement();
 	      laser.generatelaser(&speeder1);
 	      laser.laser_move();

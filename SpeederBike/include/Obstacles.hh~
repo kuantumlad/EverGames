@@ -1,0 +1,15 @@
+#ifndeg OBSTACLES_HH
+#define OBSTACLES_HH
+
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+
+class Obstacles : public sf::Drawable, public sf::Transformable {
+
+
+public:
+Obstacles();
+~Obstacles();
+
+void 

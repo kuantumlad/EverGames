@@ -1,0 +1,23 @@
+#include "../include/Obstacles.hh"
+#include <stdlib.h>
+#include <iostream>
+#include <cmath>
+
+Obstacles::Obstacles(){
+
+  ObstPosX = 0.0;
+  ObstPosY = 350.0;
+}
+
+Obstacles::~Obstacles(){;}
+
+void Obstacles::ObstTexture(){
+  if( !ObstTexture1.loadFromFile("figure/log") ){
+    std::cerr<<"-1"<<std::endl;
+  }
+  ObstSprite1.setTexture(ObstTexture1);
+}
+
+void Obstacles::ObstaclesPosition()
+{
+  
