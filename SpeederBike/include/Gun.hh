@@ -19,6 +19,9 @@ private:
   sf::Time time1;
   float timer;
 
+  double ammo;
+  bool NoAmmo;
+
 public:
   Gun();
   ~Gun(){;}
@@ -26,11 +29,17 @@ public:
   void laser_move();  
   void generatelaser(Player *ptr);
   void laser_sound();
+  std::vector<sf::RectangleShape> LaserPosition(){ return store_laser;}
   void draw(sf::RenderTarget&, sf::RenderStates) const;
+  void RemainingAmmo();
 
   sf::Vector2f laserPos();
   
   std::vector<sf::RectangleShape> store_laser;
+
+  sf::Font font;
+  sf::Text Ammo;
+  std::string CurrentAmmo;
 
 };
 #endif 

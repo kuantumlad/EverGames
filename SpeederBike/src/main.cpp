@@ -125,7 +125,9 @@ int main()
 	      speeder1.player_movement();
 	      laser.generatelaser(&speeder1);
 	      laser.laser_move();
+	      StormTrooper.ObstHit(&laser);
 
+	      laser.RemainingAmmo();
 	
 	      // clear the window with black color
 	      window.clear(sf::Color::Black);

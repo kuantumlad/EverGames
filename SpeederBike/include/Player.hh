@@ -36,11 +36,15 @@ public:
   void player_movement();
   void JumpEquation(float);
   void Jump();
+  void Health();
+  void Shield();
   sf::Vector2f position() {return speeder.getPosition(); }
   void draw(sf::RenderTarget&, sf::RenderStates) const;
   
   sf::Sprite speeder;
 
+  sf::RectangleShape healthbar;
+  sf::RectangleShape shieldbar;
 
 };
 #endif

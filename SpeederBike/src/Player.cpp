@@ -12,14 +12,23 @@ Player::Player() {
   m_moveY  = 7;
   m_positionlaser = 0.0;
   m_velocitylaser = 0.1;
+
   lowerbound.x = 5.0;
   lowerbound.y = 200.0;
   upperbound.x = 450.0;
   upperbound.y = 375.0;
+
   gravity = 3*9.8;
   whileJump = false;
   Speed = 10.0;
   dt = 1/60.0;
+
+  healthbar.setSize(sf::Vector2f(150,10));
+  healthbar.setFillColor(sf::Color::Red);
+  healthbar.setPosition(5,2);
+  shieldbar.setSize(sf::Vector2f(150,10));
+  shieldbar.setFillColor(sf::Color::Blue);
+  shieldbar.setPosition(725,2);
 }
 Player::~Player() {;}
 
@@ -34,7 +43,9 @@ void Player::player_texture(){
 
 //Draw sprite
 void Player::draw( sf::RenderTarget& target, sf::RenderStates states ) const {
-  target.draw(speeder);    
+  target.draw(speeder); 
+  target.draw(healthbar);
+  target.draw(shieldbar);
 }
 
 void Player::player_moveSound(){
@@ -92,6 +103,6 @@ void Player::player_movement(){
     }
 }
 
-  
+void Player::Health(){;}
   
 
