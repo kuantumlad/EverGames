@@ -18,7 +18,7 @@ Map::Map(float DisplayX, float DisplayY){
   StoreMap.push_back(MapSprite);
   MapSprite.setPosition(DisplayX*2.0, 0);
   StoreMap.push_back(MapSprite);  
-  std::cout<<StoreMap[2].getPosition().x<<std::endl;
+  // std::cout<<StoreMap[2].getPosition().x<<std::endl;
 }
  
 Map::~Map(){;}

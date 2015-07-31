@@ -4,6 +4,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <stdlib.h>
 
 class Obstacles : public sf::Drawable, public sf::Transformable {
 
@@ -15,10 +16,15 @@ public:
   Obstacles();
   ~Obstacles();
 
-  double ObstPosX, ObstPosY;
+  double ObstPosX, ObstPosY, ObstPosVx;
+  double offscreen,RandomOffset;
+  double dt;
 
+  std::vector<sf::Sprite> StoreObst;
   void ObstTexture();
   void ObstPosition();
+  void ObstMove();
+  
 
   void draw(sf::RenderTarget&, sf::RenderStates) const;
 

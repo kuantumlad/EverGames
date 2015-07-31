@@ -24,7 +24,7 @@ void Gun::generatelaser(Player *ptr){
       if(timer>=0.1)
 	{
 	  noise1.play();
-	  sf::Vector2f offset(75.0,60.0);
+	  sf::Vector2f offset(115.0,105.0);
 	  sf::Vector2f laserPos(0.0,0.0);
 
 	  laserPos.x = speederPos.x + offset.x;
