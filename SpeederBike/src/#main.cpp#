@@ -23,7 +23,7 @@ int main()
   const float FPS = 60.0f;
   bool redraw = true;
   float time;
-
+  
   // create the window
   sf::RenderWindow window(sf::VideoMode(880, 575), "Game");
   sf::Clock clock;
@@ -122,6 +122,13 @@ int main()
 	  else if(!firsttry)
 	    {
 	      time = clock.getElapsedTime().asSeconds();
+	      sf::Time elapsed = clock.restart();
+	      forest.update(elapsed);
+
+	      float timer;
+	            timer += elapsed.asSeconds();
+		    if(tmier<1.0){
+		    }
 	      forest.update(time);
 	      //  StormTrooper.ObstPosition();
 	      StormTrooper.ObstMove();
@@ -129,8 +136,7 @@ int main()
 	      speeder1.player_movement();
 	      laser.generatelaser(&speeder1);
 	      laser.laser_move();
-	      sf::Time startime = clock.restart();
-	      StormTrooper.ObstHit(&laser, startime);
+	      StormTrooper.ObstHit(&laser);
 
 	      laser.RemainingAmmo();
 	

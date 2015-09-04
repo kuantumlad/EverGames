@@ -34,7 +34,7 @@ Player::~Player() {;}
 
 //Load texture
 void Player::player_texture(){
-  if( !ptexture.loadFromFile( "figures/speeder_Luke3.png") )
+  if( !ptexture.loadFromFile( "figures/racernew.png") )
     {
       std::cout<<"File not found."<<std::endl;
     }
