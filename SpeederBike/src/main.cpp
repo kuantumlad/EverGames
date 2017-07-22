@@ -6,13 +6,13 @@
 //                                        //
 //****************************************//  
 
-
 #include "../include/Player.hh"
 #include "../include/Gun.hh"
 #include "../include/Menu.hh"
 #include "../include/Starmap.hh"
 #include "../include/Map.hh"
 #include "../include/Obstacles.hh"
+#include "../include/Enemies.hh"
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -31,21 +31,21 @@ int main()
 
   Player speeder1;
   Gun laser;
-  Obstacles StormTrooper;
+  //  Obstacles StormTrooper;
   Starmap stars;
   stars.init_star();
   Menu menu;
   Map forest( window.getSize().x, window.getSize().y );
+  Enemies enemy;
 
-  menu.load_font();
   menu.load_menu_sounds();
   menu.PlayMenuMusic();
   speeder1.player_texture();
   speeder1.player_moveSound();
   speeder1.player_startpos();
   laser.laser_sound();
-
   bool firsttry = true;
+  enemy.initializeEnemies();
 
   // run the program as long as the window is open
   while (window.isOpen())
@@ -117,20 +117,20 @@ int main()
 	      window.display();
 	    }
 	
-	 
-   
+
 	  else if(!firsttry)
 	    {
 	      time = clock.getElapsedTime().asSeconds();
-	      forest.update(time);
-	      //  StormTrooper.ObstPosition();
-	      StormTrooper.ObstMove();
+ 	      forest.update(time);
+
+	      //	      StormTrooper.ObstPosition();
+	      //StormTrooper.ObstMove();
 	      speeder1.Jump();
 	      speeder1.player_movement();
 	      laser.generatelaser(&speeder1);
 	      laser.laser_move();
 	      sf::Time startime = clock.restart();
-	      StormTrooper.ObstHit(&laser, startime);
+	      //StormTrooper.ObstHit(&laser, startime);
 
 	      laser.RemainingAmmo();
 	
@@ -138,10 +138,12 @@ int main()
 	      window.clear(sf::Color::Black);
 
 	      // draw everything here...
+	     
 	      window.draw(forest);
 	      window.draw(speeder1);
 	      window.draw(laser);
-	      window.draw( StormTrooper);
+	      //window.draw( StormTrooper);
+	      window.draw(enemy);
 	      // end the current frame
 	      window.display();
 

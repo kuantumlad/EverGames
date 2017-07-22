@@ -19,7 +19,6 @@ Obstacles::Obstacles(){
   Red = false;
   White = true;
 
-
   if( !ObstTexture1.loadFromFile("figures/enemy2.png") ){
     std::cerr<<"-1"<<std::endl;
   }
@@ -37,7 +36,7 @@ Obstacles::Obstacles(){
   sf::FloatRect LaserRect(0,0,0,0);
   sf::Vector2f LaserRectPos(0.0,0.0);
  
- } 
+} 
 
 Obstacles::~Obstacles(){;}
 
@@ -48,22 +47,21 @@ void Obstacles::ObstPosition()
   RandomOffset = (rand()%30)+15;
 }
 
-
-void initializeEnemies(){
-int Nenemies = 10;
-
+void Obstacles::initializeEnemies(){
+  int Nenemies = 1;
+  
   for(int i = 0; i<Nenemies; i++){
     // Place enemies offscreen at start
     float tempX = (rand()%100) + 1000;
     float tempY = (rand()%10) + 350;
-
+    
     sf::Vector2f currentEnemy( tempX, tempY);
     sf::Vector2f otherEnemy( 0, 0);
-
+    
     ObstSprite1.setPosition(currentEnemy);
   }
 }
-  
+
 void Obstacles::ObstMove(){
   dt++ ;
   srand(time(NULL));
@@ -112,6 +110,12 @@ void Obstacles::ObstHit(Gun *ptr, sf::Time elapsed){
 	}
     }
 }
+
+void Obstacles::Shoots(){
+
+
+
+} 
 	
 void Obstacles::draw(sf::RenderTarget& target, sf::RenderStates states ) const{
   for( std::vector<sf::Sprite>::const_iterator it = StoreObst.begin(); it != StoreObst.end(); ++it )

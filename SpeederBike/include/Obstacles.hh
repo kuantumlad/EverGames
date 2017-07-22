@@ -11,7 +11,6 @@ class Obstacles : public sf::Drawable, public sf::Transformable {
 
 private:
  
-
   struct Enemies{
     sf::Sprite stormtrooper;
     sf::Vector2f position;
@@ -27,8 +26,6 @@ private:
   float timer;
   int hitcount;
     
-
-
 public:
   Obstacles();
   ~Obstacles();
@@ -46,16 +43,12 @@ public:
   double dt;
   bool Red, White;
   std::vector<sf::Sprite> StoreObst;
- 
-  
-
-
-
-
+   
   void ObstPosition();
   void ObstMove();
   void ObstHit(Gun *ptr, sf::Time);
   void ObstColorChange();
+  void Shoots();
   void draw(sf::RenderTarget&, sf::RenderStates) const;
 
 };

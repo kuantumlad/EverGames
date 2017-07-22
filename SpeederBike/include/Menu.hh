@@ -8,7 +8,7 @@
 
 class Menu : public sf::Drawable {
 
-private: 
+public: 
   int m_length, m_height;
   int m_startposX, m_startposY;
   double offset; 
@@ -21,9 +21,8 @@ private:
   std::vector<double> menuposX;
 
 public:
-
-  sf::RectangleShape button;
   sf::Font font;
+  sf::RectangleShape button;
   sf::Text MenuOptions [3];
   sf::Text start, options, exit, title;
   int SelectedItemIndex;
